@@ -1,0 +1,27 @@
+<!-- src/app/app.component.html -->
+
+<div style="text-align: center; padding: 20px;">
+  <h1>Your Dashboard</h1>
+  <table *ngIf="data.length > 0" border="1">
+    <thead>
+    <tr>
+      <th *ngFor="let key of Object.keys(data[0])" (click)="sortByColumn(key)">{{ key }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of data">
+      <td *ngFor="let value of Object.values(item)">{{ value }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="data.length === 0">Loading...</div>
+
+  <div style="text-align: center; padding: 20px;">
+    <button (click)="downloadCSV()">Download CSV</button>
+  </div>
+
+  <div style="text-align: center; padding: 20px;">
+    <input [(ngModel)]="searchTerm" placeholder="Enter song title">
+    <button (click)="getSong()">Get Song</button>
+  </div>
+</div>
